@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 import { csvParse } from 'd3-dsv';
+
+import Button from './components/Button';
 import USMap from './components/USMap';
+
+const ButtonGroup = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  margin: 0 auto;
+  max-width: 600px;
+`;
 
 const App = () => {
   const [data, setData] = useState(null);
@@ -17,14 +28,17 @@ const App = () => {
 
   return (
     <div>
-      <div>
-        <button onClick={() => setFullExpesing(false)}>
+      <ButtonGroup>
+        <Button
+          selected={!fullExpensing}
+          onClick={() => setFullExpesing(false)}
+        >
           Neutral Cost Recovery for Structures
-        </button>
-        <button onClick={() => setFullExpesing(true)}>
+        </Button>
+        <Button selected={fullExpensing} onClick={() => setFullExpesing(true)}>
           NCRS + Full Expensing
-        </button>
-      </div>
+        </Button>
+      </ButtonGroup>
       {data ? <USMap data={data} fullExpensing={fullExpensing} /> : null}
     </div>
   );
