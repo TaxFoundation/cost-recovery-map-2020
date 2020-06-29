@@ -10,8 +10,12 @@ const ButtonGroup = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
   max-width: 600px;
+`;
+
+const StyledApp = styled.div`
+  font-family: 'Lato', sans-serif;
 `;
 
 const App = () => {
@@ -27,7 +31,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <StyledApp>
       <ButtonGroup>
         <Button
           selected={!fullExpensing}
@@ -40,7 +44,7 @@ const App = () => {
         </Button>
       </ButtonGroup>
       {data ? <USMap data={data} fullExpensing={fullExpensing} /> : null}
-    </div>
+    </StyledApp>
   );
 };
 
